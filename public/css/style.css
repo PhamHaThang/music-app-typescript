@@ -160,12 +160,17 @@
   margin-right: 5px;
 }
 
-.singer-detail .inner-action.inner-heart i {
-  color: #f57f20;
-  font-weight: 600;
+.singer-detail .inner-action.inner-heart {
   cursor: pointer;
 }
+.singer-detail .inner-action.inner-heart.active {
+  color: #f57f20;
+  font-weight: 600;
+}
 .singer-detail .inner-action.inner-like {
+  cursor: pointer;
+}
+.singer-detail .inner-action.inner-like.active {
   color: #0077ff;
   font-weight: 600;
 }
@@ -186,7 +191,4 @@
 
 .singer-detail .inner-play .inner-audio {
   flex: 1;
-}
-.singer-detail .inner-play .inner-audio #aplayer {
-  width: 50%;
 }
