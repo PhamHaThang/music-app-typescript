@@ -27,3 +27,28 @@ export const topics = async (req: Request, res: Response) => {
     songs: songs,
   });
 };
+// [GET] /songs/detail/:slugSong
+export const detail = async (req: Request, res: Response) => {
+  const slugSong: string = req.params.slugSong;
+  const song = await Song.findOne({
+    deleted: false,
+    status: "active",
+    slug: slugSong,
+  });
+  const singer = await Singer.findOne({
+    deleted: false,
+    _id: song.singerId,
+    status: "active",
+  }).select("fullName");
+  const topic = await Topic.findOne({
+    deleted: false,
+    _id: song.topicId,
+    status: "active",
+  }).select("title");
+  res.render("client/pages/songs/detail.pug", {
+    pageTitle: "Chi tiết bài hát",
+    song: song,
+    singer: singer,
+    topic: topic,
+  });
+};
