@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Biên dịch sang ES6
+    "module": "commonjs", // CommonJS là tiêu chuẩn sử dụng trong Nodejs để làm việc với module
+    "removeComments": true, // Xóa comment khi biên dịch
+    "esModuleInterop": true, // Dùng import thay require
+    "outDir": "dist"
+  }
+}
