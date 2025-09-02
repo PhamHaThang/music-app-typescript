@@ -2,9 +2,11 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import * as database from "./config/database";
 import clientRoutes from "./routes/client/index.route";
+import adminRoutes from "./routes/admin/index.route";
 import path from "path";
 import moment = require("moment");
-
+import { systemConfig } from "./config/systems";
+import notFoundPageMiddleware from "./middlewares/client/404.middleware";
 dotenv.config();
 const app: Express = express();
 const port: number | string = process.env.PORT || 3000;
@@ -14,8 +16,17 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 //Config static file
 app.use(express.static(path.join(__dirname, "public")));
-//Client Routes
+// Local variables
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
+//TinyMCE
+app.use(
+  "/tinymce",
+  express.static(path.join(__dirname, "node_modules", "tinymce"))
+);
+//Routes
 clientRoutes(app);
+adminRoutes(app);
+app.use(notFoundPageMiddleware);
 app.locals.moment = moment;
 (async () => {
   await database.connect();
