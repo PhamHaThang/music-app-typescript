@@ -1,0 +1,35 @@
+extends ../../layouts/default.pug
+include ../../mixins/moment.pug
+block main
+    .singer-detail
+        .container.my-3
+            .row 
+                .col-12 
+                    .inner-title #{song.title}
+
+                    .inner-actions 
+                        .inner-action.inner-time 
+                            <i class="bi bi-clock"></i>  
+                            +formatDate(song.createdAt)
+                        .inner-action.inner-singer <i class="bi bi-mic-fill"></i> #{singer.fullName}
+                        .inner-action.inner-topic <i class="bi bi-music-note-beamed"></i> #{topic.title}
+                        .inner-action.inner-listen 
+                            <i class="bi bi-headphones"></i> 
+                            span #{song.listen || 0} lượt nghe
+                        .inner-action.inner-like(button-like=song.id) 
+                            <i class="bi bi-hand-thumbs-up-fill"></i> 
+                            span #{song.like} thích
+                        div(button-favorite=song.id class=`inner-action inner-heart  ${song.isFavoriteSong ? "active" : ""}`) <i class="bi bi-heart"></i> Bài hát yêu thích
+                    .inner-play 
+                        .inner-avatar 
+                            img(src=song.avatar)
+                        .inner-audio
+                            #aplayer(data-song=song data-singer=singer)
+                    .inner-desc 
+                        .inner-label Mô tả
+                        .inner-text 
+                            | !{song.description}
+                    .inner-desc 
+                        .inner-label Lời bài hát
+                        .inner-text 
+                            | !{song.lyrics}
