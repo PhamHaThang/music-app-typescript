@@ -9,8 +9,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && node copy-dir.js",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "start": "nodemon index.ts"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "dependencies": {
     "body-parser": "^2.2.0",
     "cloudinary": "^2.7.0",
@@ -31,6 +38,7 @@
     "@types/node": "^24.3.0",
     "fs-extra": "^11.3.1",
     "nodemon": "^3.1.10",
+    "pre-commit": "^1.2.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }
