@@ -89,7 +89,13 @@
 .song-item .inner-content .inner-like {
   color: #0059ff;
 }
-
+.song-item .inner-content .inner-heart {
+  cursor: pointer;
+}
+.song-item .inner-content .inner-heart.active {
+  color: #f52020;
+  font-weight: 600;
+}
 /* Singer detail */
 .singer-detail .inner-avatar {
   width: 100px;

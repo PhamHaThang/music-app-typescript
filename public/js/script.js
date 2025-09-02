@@ -47,22 +47,23 @@ if (buttonLike) {
   });
 }
 // Favorite Song
-const buttonFavorite = document.querySelector("[button-favorite]");
-if (buttonFavorite) {
-  buttonFavorite.addEventListener("click", () => {
-    const idSong = buttonFavorite.getAttribute("button-favorite");
-    const isActive = buttonFavorite.classList.contains("active");
-    const typeFavorite = isActive ? "unfavorite" : "favorite";
-    const link = `/songs/favorite/${typeFavorite}/${idSong}`;
-
-    fetch(link, {
-      method: "PUT",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.code == 200) {
-          buttonFavorite.classList.toggle("active");
-        }
-      });
+const listButtonFavorite = document.querySelectorAll("[button-favorite]");
+if (listButtonFavorite.length > 0) {
+  listButtonFavorite.forEach((buttonFavorite) => {
+    buttonFavorite.addEventListener("click", () => {
+      const idSong = buttonFavorite.getAttribute("button-favorite");
+      const isActive = buttonFavorite.classList.contains("active");
+      const typeFavorite = isActive ? "unfavorite" : "favorite";
+      const link = `/songs/favorite/${typeFavorite}/${idSong}`;
+      fetch(link, {
+        method: "PUT",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 200) {
+            buttonFavorite.classList.toggle("active");
+          }
+        });
+    });
   });
 }

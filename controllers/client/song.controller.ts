@@ -3,6 +3,7 @@ import Topic from "../../models/topic.model";
 import Song from "../../models/song.model";
 import Singer from "../../models/singer.model";
 import FavoriteSong from "../../models/favorite-song.model";
+import * as timeHelper from "../../helpers/time";
 // [GET] /songs/:slugTopics
 export const topics = async (req: Request, res: Response) => {
   const topic = await Topic.findOne({
@@ -14,7 +15,7 @@ export const topics = async (req: Request, res: Response) => {
     deleted: false,
     status: "active",
     topicId: topic.id,
-  }).select("avatar title slug singerId like");
+  }).select("avatar title slug singerId like createdAt");
   for (const song of songs) {
     const singer = await Singer.findOne({
       deleted: false,
@@ -22,6 +23,7 @@ export const topics = async (req: Request, res: Response) => {
       status: "active",
     });
     song["infoSinger"] = singer;
+    song["time"] = timeHelper.timeSince(song.createdAt);
   }
   res.render("client/pages/songs/list.pug", {
     pageTitle: "Danh sách bài hát",
@@ -50,7 +52,6 @@ export const detail = async (req: Request, res: Response) => {
     songId: song.id,
   });
   song["isFavoriteSong"] = favoriteSong ? true : false;
-  console.log(favoriteSong);
 
   res.render("client/pages/songs/detail.pug", {
     pageTitle: "Chi tiết bài hát",

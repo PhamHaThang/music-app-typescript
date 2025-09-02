@@ -6,5 +6,6 @@ route.get("/:slugTopics", controller.topics);
 route.get("/detail/:slugSong", controller.detail);
 route.put("/like/:typeLike/:idSong", controller.like);
 route.put("/favorite/:typeFavorite/:idSong", controller.favorite);
+route.put("/favorite/:typeFavorite/:idSong", controller.favorite);
 
 export const songRoutes: Router = route;

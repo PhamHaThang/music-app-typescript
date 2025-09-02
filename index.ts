@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import * as database from "./config/database";
 import clientRoutes from "./routes/client/index.route";
 import path from "path";
+import moment = require("moment");
 
 dotenv.config();
 const app: Express = express();
@@ -15,7 +16,7 @@ app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, "public")));
 //Client Routes
 clientRoutes(app);
-
+app.locals.moment = moment;
 (async () => {
   await database.connect();
   app.listen(port, () => {
