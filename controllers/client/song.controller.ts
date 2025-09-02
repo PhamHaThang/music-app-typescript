@@ -78,6 +78,22 @@ export const like = async (req: Request, res: Response) => {
     like: newLike,
   });
 };
+// [PUT] /songs/listen/:idSong
+export const listen = async (req: Request, res: Response) => {
+  const idSong: string = req.params.idSong;
+  const song = await Song.findOne({
+    _id: idSong,
+    status: "active",
+    deleted: false,
+  });
+  song.listen = song.listen + 1;
+  await song.save();
+  res.json({
+    code: 200,
+    message: "Thành công",
+    listen: song.listen,
+  });
+};
 // [PUT] /songs/favorite/:typeFavorite/:idSong
 export const favorite = async (req: Request, res: Response) => {
   try {

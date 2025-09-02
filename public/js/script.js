@@ -22,6 +22,22 @@ if (aplayer) {
   ap.on("pause", () => {
     avatar.style.animationPlayState = "paused";
   });
+  ap.on("ended", () => {
+    const link = `/songs/listen/${song._id}`;
+
+    fetch(link, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.code == 200) {
+          const innerListen = document.querySelector(
+            ".singer-detail .inner-listen span"
+          );
+          innerListen.innerHTML = `${data.listen} Lượt nghe`;
+        }
+      });
+  });
 }
 
 // Like
