@@ -198,3 +198,85 @@
 .singer-detail .inner-play .inner-audio {
   flex: 1;
 }
+/* Box search */
+.box-search {
+  position: relative;
+}
+
+.box-search .inner-suggest {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 300px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 1;
+  overflow-y: auto;
+  display: none;
+}
+
+.box-search .inner-suggest.show {
+  display: block;
+}
+
+/* Định dạng các mục gợi ý */
+.box-search .inner-suggest .inner-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+.box-search .inner-suggest .inner-item:hover {
+  background-color: #f5f5f5;
+}
+
+.box-search .inner-suggest .inner-item:last-child {
+  border-bottom: none;
+}
+
+.box-search .inner-suggest .inner-item .inner-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.box-search .inner-suggest .inner-item .inner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box-search .inner-suggest .inner-item .inner-info {
+  margin-left: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.box-search .inner-suggest .inner-item .inner-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.box-search .inner-suggest .inner-item .inner-singer {
+  font-size: 14px;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.box-search .inner-suggest .inner-item .inner-singer i {
+  margin-right: 5px;
+}
