@@ -139,6 +139,7 @@
 .singer-detail .inner-desc .inner-text {
   font-size: 14px;
   padding: 10px 15px;
+  white-space: pre;
 }
 
 .singer-detail .inner-title {
@@ -221,7 +222,6 @@
   display: block;
 }
 
-/* Định dạng các mục gợi ý */
 .box-search .inner-suggest .inner-item {
   display: flex;
   align-items: center;

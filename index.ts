@@ -7,10 +7,13 @@ import path from "path";
 import moment = require("moment");
 import { systemConfig } from "./config/systems";
 import notFoundPageMiddleware from "./middlewares/client/404.middleware";
+import methodOverride from "method-override";
 import bodyParser = require("body-parser");
 dotenv.config();
 const app: Express = express();
 const port: number | string = process.env.PORT || 3000;
+// override with POST having ?_method=DELETE
+app.use(methodOverride("_method"));
 //Config req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -21,6 +24,7 @@ app.set("view engine", "pug");
 app.use(express.static(path.join(__dirname, "public")));
 // Local variables
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
+
 //TinyMCE
 app.use(
   "/tinymce",

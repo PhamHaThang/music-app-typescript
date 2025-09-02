@@ -15,5 +15,15 @@ route.post(
   uploadCloud.uploadFields,
   controller.createPost
 );
+route.get("/edit/:idSong", controller.edit);
+route.put(
+  "/edit/:idSong",
+  upload.fields([
+    { name: "avatar", maxCount: 1 },
+    { name: "audio", maxCount: 1 },
+  ]),
+  uploadCloud.uploadFields,
+  controller.editPut
+);
 
 export const songRoutes: Router = route;

@@ -1,5 +1,5 @@
 tinymce.init({
-  selector: "textarea",
+  selector: "textarea.tiny-mce",
   license_key: "gpl",
   plugins: "image",
   file_picker_callback: function (cb, value, meta) {
